@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Goals</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <form id="taskForm">
+            <input type="text" id="title" placeholder="Title Here" required />
+            <textarea id="description" placeholder="Description Here"></textarea>
+            <button type="submit" id="addButton">Add</button>
+        </form>
+
+        <!-- modal -->
+        <div id="editModal" class="modal">
+            <div class="modal-content">
+                <span id="closeEditModal" class="close">&times;</span>
+                <h2>Edit Task</h2>
+                <form id="editForm">
+                    <input type="text" id="editTitle" placeholder="Task Title" required>
+                    <textarea id="editDescription" placeholder="Task Description" required></textarea>
+                    <button type="submit" id="saveChangesBtn">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="./index.js"></script>
+</body>
+
+</html>
