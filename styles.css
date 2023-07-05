@@ -1,8 +1,11 @@
 .container {
+    position: relative;
     max-width: 400px;
     margin: 0 auto;
     padding: 20px;
     text-align: center;
+    height: 100vh;
+
 }
 
 h1 {
@@ -34,6 +37,30 @@ button:hover {
     background-color: #45a049;
 }
 
+/* Add this CSS code */
+
+.delete-button {
+    background-color: #FF0000;
+    color: white;
+    font-weight: bold;
+}
+
+.delete-button:hover {
+    background-color: #FF3333;
+}
+
+.add-button {
+    background-color: #FF0000;
+    color: white;
+    font-weight: bold;
+}
+
+.add-button:hover {
+    background-color: #FF3333;
+}
+
+
+
 ul {
     list-style-type: none;
     padding: 0;
@@ -54,18 +81,17 @@ li {
     cursor: pointer;
 }
 
-.star-icon.checked {
-    color: #FFD700;
-}
 
 /* Modal styles */
 .modal {
-    display: none;
-    /* Hidden by default */
+    display: flex;
+    /* Change display to flex */
+    justify-content: center;
+    /* Center horizontally */
+    align-items: center;
+    /* Center vertically */
     position: fixed;
-    /* Stay in place */
     z-index: 1;
-    /* Sit on top */
     left: 0;
     top: 0;
     width: 100%;
@@ -74,20 +100,27 @@ li {
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-}
-
 .close {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
+    order: 1;
+}
+
+.edit-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    order: 2;
+    /* Change the order to 2 to move the edit task button to the right */
+}
+
+.edit-button:hover {
+    background-color: #45a049;
 }
 
 .star-icon {
@@ -136,16 +169,32 @@ h1 {
     transition: color 0.3s ease-in-out;
 }
 
-.input-container {
-    display: flex;
-    margin-bottom: 20px;
+.modal-content .small-title {
+    font-size: 18px;
 }
+
+.modal-content textarea {
+    width: 100%;
+    height: 100px;
+    padding: 0px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    resize: vertical;
+}
+
+#edit-description-input {
+    margin-top: 20px;
+    /* Adds space above the input */
+}
+
+
 
 input[type="text"] {
     flex: 1;
     padding: 10px;
     margin-right: 10px;
     border: 1px solid #ccc;
+    width: 80%;
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
@@ -165,6 +214,7 @@ ul {
     list-style-type: none;
     padding: 0;
     text-align: left;
+    width: 89%;
 }
 
 li {
@@ -180,6 +230,8 @@ li {
 .star-icon {
     color: #aaa;
     cursor: pointer;
+    order: 2;
+    margin-right: 10px;
 }
 
 .star-icon.checked {
@@ -206,17 +258,9 @@ li {
     background-color: #fefefe;
     margin: 15% auto;
     padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
+    width: 50%;
 }
 
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-}
 
 .close:hover,
 .close:focus {
@@ -242,7 +286,7 @@ li {
 
 .container {
     position: relative;
-    max-width: 400px;
+    max-width: 699px;
     margin: 0 auto;
     padding: 20px;
     text-align: center;
@@ -253,6 +297,10 @@ li {
     top: 10px;
     right: 10px;
     z-index: 9999;
+}
+
+body {
+    font-family: "Sofia", sans-serif;
 }
 
 .theme-toggle #theme-icon {
