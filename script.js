@@ -194,24 +194,6 @@ document.addEventListener("DOMContentLoaded", () => {
     preferredTheme === "dark-theme" ? "fa-moon" : "fa-sun"
   );
 
-  // // Function to toggle the theme
-  // function toggleTheme() {
-  //   // Toggle the body class for the theme
-  //   document.body.classList.toggle("dark-theme");
-
-  //   // Toggle the theme icon
-  //   themeIcon.classList.toggle("fa-moon");
-  //   themeIcon.classList.toggle("fa-sun");
-
-  //   // Store the user's preference in local storage
-  //   const currentTheme = document.body.classList.contains("dark-theme")
-  //     ? "dark-theme"
-  //     : "light-theme";
-  //   localStorage.setItem("theme", currentTheme);
-  // }
-
-  // // Add event listener to the theme toggle icon
-  // themeIcon.addEventListener("click", toggleTheme);
   themeIcon.addEventListener("click", () => {
     document.body.classList.toggle("dark-theme");
     titleInput.classList.toggle("dark-theme");

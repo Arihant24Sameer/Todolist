@@ -5,6 +5,9 @@
     <title>Daily Goals</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js"></script>
+
 </head>
 
 <body>
@@ -33,6 +36,22 @@
     </div>
 
     <script src="script.js"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBP130pEgfHcqg0b3cjKOTWA_QSGdZ1cIY",
+            authDomain: "dailytask-dacdb.firebaseapp.com",
+            projectId: "dailytask-dacdb",
+            storageBucket: "dailytask-dacdb.appspot.com",
+            messagingSenderId: "51652272017",
+            appId: "1:51652272017:web:5b2462c4d1148477274430",
+            measurementId: "G-0GTF0TDBF4"
+        };
+        const app = initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+    </script>
+    <script src="app.js"></script>
 </body>
 
 </html>
