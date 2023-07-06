@@ -34,22 +34,19 @@ export const getDataFromCollection = async (collectionName) => {
   const dataArray = [];
 
   dataList.forEach((doc) => {
-    console.log("doc ::: ", doc);
-    console.log("doc key ::: ", doc?._key.path.segments[6]);
-    console.log("doc.data : ", doc._key.path.segments[6]);
-
-    dataArray.push(doc.data());
+    const dataItem = { ...doc.data() };
+    dataItem.key = doc?._key?.path?.segments[6];
+    dataArray.push(dataItem);
   });
 
   return dataArray;
 };
 
-export const deleteTask = async (collectionName, docId) => {
-  console.log("doc id : ", docId);
-  const docRef = doc(db, collectionName, docId);
-  await deleteDoc(docRef);
-
-  console.log("Document deleted successfully!");
+export const deleteTask = async (collectionName, key) => {
+  console.log("key ::: ", key);
+  const docRef = doc(db, collectionName, key);
+  let res = await deleteDoc(docRef);
+  console.log("res ::: ", res);
 };
 
 // const setDataToCollection = async (collectionName, data) => {

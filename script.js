@@ -1,5 +1,9 @@
 import { COLLECTION_NAME } from "./constants.js";
-import { initializeConnection, getDataFromCollection } from "./index.js";
+import {
+  initializeConnection,
+  getDataFromCollection,
+  deleteTask,
+} from "./index.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   initializeConnection();
@@ -61,13 +65,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
 
-  // Function to delete a task
-  function deleteTask(index) {
-    tasks.splice(index, 1);
+  async function deleteTaskItem(key) {
 
-    renderTasks();
+    deleteTask(COLLECTION_NAME, key);
   }
-
   // Function to toggle the star status of a task
   function toggleStar(index) {
     const task = tasks[index];
@@ -163,17 +164,24 @@ document.addEventListener("DOMContentLoaded", async () => {
   todoList.addEventListener("click", (event) => {
     const target = event.target;
     const key = target.value;
+    console.log("key : ", key);
 
     if (target.classList.contains("delete-button")) {
-      const index = target.dataset.index;
-      deleteTask(index);
-    } else if (target.classList.contains("edit-button")) {
-      const index = target.dataset.index;
-      openEditModal(index);
-    } else if (target.classList.contains("star-icon")) {
-      const index = target.dataset.index;
-      toggleStar(index);
+      deleteTaskItem(key);
     }
+
+    // if (target.classList.contains("delete-button")) {
+    //   const index = target.dataset.index;
+    //   console.log("index ::: ", index);
+    //   // deleteTask(index);
+    //   deleteTaskItem();
+    // } else if (target.classList.contains("edit-button")) {
+    //   const index = target.dataset.index;
+    //   openEditModal(index);
+    // } else if (target.classList.contains("star-icon")) {
+    //   const index = target.dataset.index;
+    //   toggleStar(index);
+    // }
   });
 
   // Event listener for the close button in the edit modal
