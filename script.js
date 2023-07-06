@@ -1,6 +1,11 @@
-document.addEventListener("DOMContentLoaded", () => {
-  // Retrieve tasks from local storage or initialize an empty array
-  let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+import { COLLECTION_NAME } from "./constants.js";
+import { initializeConnection, getDataFromCollection } from "./index.js";
+
+document.addEventListener("DOMContentLoaded", async () => {
+  initializeConnection();
+
+  let tasks = await getDataFromCollection(COLLECTION_NAME);
+  console.log("Response Data : ", tasks);
 
   // Get HTML elements
   const titleInput = document.getElementById("title-input");
@@ -48,9 +53,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const newTask = { title, description, starred: false };
       tasks.push(newTask);
 
-      // Save tasks to local storage
-      localStorage.setItem("tasks", JSON.stringify(tasks));
-
       renderTasks();
 
       // Clear input fields
@@ -62,9 +64,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Function to delete a task
   function deleteTask(index) {
     tasks.splice(index, 1);
-
-    // Save tasks to local storage
-    localStorage.setItem("tasks", JSON.stringify(tasks));
 
     renderTasks();
   }
@@ -105,7 +104,9 @@ document.addEventListener("DOMContentLoaded", () => {
           <i class="fas fa-star"></i>
         </span>
         <button class="edit-button" data-index="${index}">Edit</button>
-        <button class="delete-button" data-index="${index}">Delete</button>
+        <button class="delete-button" data-index="${index}" value="${
+        task.key
+      }">Delete</button>
       </div>
     `;
       todoList.appendChild(li);
@@ -161,6 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Event listener for the delete and edit buttons
   todoList.addEventListener("click", (event) => {
     const target = event.target;
+    const key = target.value;
 
     if (target.classList.contains("delete-button")) {
       const index = target.dataset.index;
