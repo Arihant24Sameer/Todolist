@@ -8,7 +8,9 @@ import {
   orderBy,
   setDoc,
   doc,
+  addDoc,
   deleteDoc,
+  updateDoc,
 } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
 
 let db = null;
@@ -41,12 +43,39 @@ export const getDataFromCollection = async (collectionName) => {
 
   return dataArray;
 };
+//add task C
+export const addTaskToCollection = async (collectionName, task) => {
+  const db = getFirestore();
+  const collRef = collection(db, collectionName);
+  const docRef = await addDoc(collRef, task);
+  task.key = docRef.id; // Assign the document ID to the task object
+  return docRef;
+};
+//update the task U
 
+export const updateTaskInCollection = async (
+  collectionName,
+  key,
+  updatedTask
+) => {
+  const db = getFirestore();
+  const docRef = doc(db, collectionName, key);
+
+  const { position, ...taskData } = updatedTask;
+  await updateDoc(docRef, taskData);
+  // If the `position` field is included in the update, update it separately
+  if (position !== undefined) {
+    const positionRef = doc(db, collectionName, key, "position");
+    await setDoc(positionRef, { position });
+  }
+};
+
+//delete task D
 export const deleteTask = async (collectionName, key) => {
   console.log("key ::: ", key);
   const docRef = doc(db, collectionName, key);
-  let res = await deleteDoc(docRef);
-  console.log("res ::: ", res);
+  await deleteDoc(docRef);
+  return deleteTask;
 };
 
 // const setDataToCollection = async (collectionName, data) => {
