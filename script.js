@@ -18,9 +18,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   const descriptionInput = document.getElementById("description-input");
   const addButton = document.getElementById("add-button");
   const todoList = document.getElementById("todo-list");
-
-  // Get modal elements
+  const taskModal = document.getElementById("taskModal"); // Get modal elements
   const editModal = document.getElementById("editModal");
+  const closeTaskModalButton = document.querySelector("#taskModal .close");
   const editTitleInput = document.getElementById("edit-title-input");
   const editDescriptionInput = document.getElementById(
     "edit-description-input"
@@ -130,18 +130,18 @@ document.addEventListener("DOMContentLoaded", async () => {
     tasks.forEach((task, index) => {
       const li = document.createElement("li");
       li.innerHTML = `
-      <h3>${task.title}</h3>
-      <p>${task.description}</p>
-      <div>
-        <span class="star-icon ${
-          task.starred ? "checked" : ""
-        }" data-index="${index}">
-          <i class="fas fa-star"></i>
-        </span>
-        <button class="edit-button" data-index="${index}">Edit</button>
-        <button class="delete-button" data-key="${task.key}">Delete</button>
-      </div>
-    `;
+        <h3 class="task-title">${truncateLongWord(task.title)}</h3>
+        <p class="task-description">${truncateLongWord(task.description)}</p>
+        <div>
+          <span class="star-icon ${
+            task.starred ? "checked" : ""
+          }" data-index="${index}">
+            <i class="fas fa-star"></i>
+          </span>
+          <button class="edit-button" data-index="${index}">Edit</button>
+          <button class="delete-button" data-key="${task.key}">Delete</button>
+        </div>
+      `;
       todoList.appendChild(li);
 
       // Add event listener to star icon
@@ -162,7 +162,72 @@ document.addEventListener("DOMContentLoaded", async () => {
         const key = deleteButton.dataset.key;
         deleteTaskItem(key);
       });
+
+      // Add event listener to task title
+      const taskTitle = li.querySelector(".task-title");
+      taskTitle.addEventListener("click", () => {
+        openTaskDetailModal(index);
+      });
+
+      // Add event listener to task description
+      const taskDescription = li.querySelector(".task-description");
+      taskDescription.addEventListener("click", () => {
+        openTaskDetailModal(index);
+      });
     });
+  }
+
+  function truncateLongWord(word, maxLength = 10) {
+    if (word.length > maxLength) {
+      return `${word.slice(0, maxLength)}...`;
+    }
+    return word;
+  }
+
+  function openTaskDetailModal(index) {
+    const task = tasks[index];
+    const taskModalTitle = document.getElementById("task-modal-title");
+    const taskModalDescription = document.getElementById(
+      "task-modal-description"
+    );
+
+    taskModalTitle.textContent = task.title;
+    taskModalDescription.textContent = task.description;
+
+    openModal();
+  }
+
+  function openTaskModal() {
+    taskModal.style.display = "block";
+  }
+
+  // Function to close the task modal
+  function closeTaskModal() {
+    taskModal.style.display = "none";
+  }
+
+  // Add event listener to the close button in the task modal
+  closeTaskModalButton.addEventListener("click", closeTaskModal);
+
+  // Add event listener to close the task modal when clicking outside the modal content
+  window.addEventListener("click", (event) => {
+    if (event.target === taskModal) {
+      closeTaskModal();
+    }
+  });
+
+  // Function to open the task detail modal
+  function openTaskDetailModal(index) {
+    const task = tasks[index];
+    const taskModalTitle = document.getElementById("task-modal-title");
+    const taskModalDescription = document.getElementById(
+      "task-modal-description"
+    );
+
+    taskModalTitle.textContent = task.title;
+    taskModalDescription.textContent = task.description;
+
+    openTaskModal();
   }
 
   // Function to open the edit modal
@@ -217,3 +282,42 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Render the tasks on page load
   renderTasks();
 });
+
+// Rest of your code...
+
+// Get the theme toggle element
+const themeToggle = document.querySelector(".theme-toggle");
+
+// Function to toggle the theme
+function toggleTheme() {
+  // Toggle the 'dark-theme' class on the body element
+  document.body.classList.toggle("dark-theme");
+
+  // Store the theme preference in local storage
+  const isDarkMode = document.body.classList.contains("dark-theme");
+  localStorage.setItem("theme", isDarkMode ? "dark" : "light");
+}
+
+// Add click event listener to the theme toggle
+themeToggle.addEventListener("click", toggleTheme);
+
+// Check if the user's preference is set to dark mode
+const prefersDarkMode = window.matchMedia(
+  "(prefers-color-scheme: dark)"
+).matches;
+
+// Retrieve the theme preference from local storage
+const savedTheme = localStorage.getItem("theme");
+
+// Apply the dark theme if the user's preference is set to dark mode or if the saved theme preference is dark
+if (prefersDarkMode || savedTheme === "dark") {
+  toggleTheme();
+}
+
+// Update the truncateLongWord function to truncate the word with an ellipsis
+function truncateLongWord(word, maxLength = 10) {
+  if (word.length > maxLength) {
+    return `${word.slice(0, maxLength)}...`;
+  }
+  return word;
+}
