@@ -77,25 +77,3 @@ export const deleteTask = async (collectionName, key) => {
   await deleteDoc(docRef);
   return deleteTask;
 };
-
-// const setDataToCollection = async (collectionName, data) => {
-//   const collRef = collection(db, collectionName);
-//   const docRef = doc(collRef);
-//   console.log("collectionName ", collectionName);
-//   console.log("data ", data);
-//   console.log("docRef : ", docRef);
-
-//   const result = await setDoc(docRef, {
-//     title: data?.title,
-//     description: data?.description,
-//   });
-//   console.log("after saving : ", result);
-//   return {
-//     status: true,
-//   };
-// };
-
-// setDataToCollection("todoData", {
-//   title: "JavaScript",
-//   description: "It is a awsome language!! ",
-// });

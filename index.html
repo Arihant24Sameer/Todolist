@@ -2,39 +2,79 @@
 <html lang="en">
 
 <head>
-    <title>Daily Goals</title>
+    <title  style="">Daily Goals</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Agdasima:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js"></script>
     <script src="script.js" type="module"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <div class="container">
+    <div class="loader-container">
+        <div class="loader"></div>
+    </div>
+    <div class="container-sm">
         <div class="theme-toggle">
             <span id="theme-icon" class="fas fa-sun"></span>
         </div>
         <h1>Daily Goals</h1>
-        <div class="input-container">
-            <input type="text" id="title-input" placeholder="Title">
-            <input type="text" id="description-input" placeholder="Description">
-            <button id="add-button">Add</button>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control dark-theme-input" id="titleInput">
+            <label for="Title">Title</label>
         </div>
-        <ul id="todo-list"></ul>
+
+        <div class="form-floating">
+            <input type="text" class="form-control dark-theme-input" id="descriptionInput">
+            <label for="Description">Description</label>
+        </div>
+        <button id="add-button" type="button" class="btn btn-success">Add</button>
+        <div class="todo">
+            <ul id="todo-list"></ul>
+
+        </div>
+
+    </div>
+
+
+
     </div>
 
     <!-- Modal -->
-    <div id="editModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2 class="small-title">Edit Task</h2>
-            <input type="text" id="edit-title-input" placeholder="Title">
-            <textarea id="edit-description-input" placeholder="Description"></textarea>
-            <button id="save-button">Save</button>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div id="editModal" class="modal-dialog">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit your Task</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="title" class="col-form-label">Title:</label>
+                            <input type="text" class="form-control" id="edit-title-input">
+                        </div>
+                        <div class="mb-3">
+                            <label for="Description" class="col-form-label">Description:</label>
+                            <textarea class="form-control" id="edit-description-input"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer" id="editModal">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button id="save-button" type="button" class="btn btn-primary">Save</button>
+                </div>
+            </div>
         </div>
     </div>
     <!-- Full Task Information Modal -->
@@ -49,7 +89,31 @@
             <!-- Additional task details can be added here -->
         </div>
     </div>
+    <div class="toast-container">
+        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="..." class="rounded me-2" alt="...">
+                <strong class="me-auto">Bootstrap</strong>
+                <small class="text-muted">just now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                See? Just like this.
+            </div>
+        </div>
 
+        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="..." class="rounded me-2" alt="...">
+                <strong class="me-auto">Bootstrap</strong>
+                <small class="text-muted">2 seconds ago</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Heads up, toasts will stack automatically
+            </div>
+        </div>
+    </div>
 
 </body>
 

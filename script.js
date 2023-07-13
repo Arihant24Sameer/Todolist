@@ -14,8 +14,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   console.log("Response Data : ", tasks);
 
   // Get HTML elements
-  const titleInput = document.getElementById("title-input");
-  const descriptionInput = document.getElementById("description-input");
+  const titleInput = document.getElementById("titleInput");
+  const descriptionInput = document.getElementById("descriptionInput");
   const addButton = document.getElementById("add-button");
   const todoList = document.getElementById("todo-list");
   const taskModal = document.getElementById("taskModal"); // Get modal elements
@@ -25,7 +25,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   const editDescriptionInput = document.getElementById(
     "edit-description-input"
   );
+  const loaderContainer = document.querySelector(".loader-container");
   const saveButton = document.getElementById("save-button");
+  loaderContainer.style.display = "none";
 
   // Function to add a new task
   function addTask() {
@@ -34,6 +36,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (title !== "" && description !== "") {
       const newTask = { title, description, starred: false };
+
+      // Show the loader
+      loaderContainer.style.display = "flex";
+
       addTaskToCollection(COLLECTION_NAME, newTask)
         .then((docRef) => {
           newTask.key = docRef.id;
@@ -43,9 +49,14 @@ document.addEventListener("DOMContentLoaded", async () => {
           // Clear input fields
           titleInput.value = "";
           descriptionInput.value = "";
+
+          // Hide the loader
+          loaderContainer.style.display = "none";
         })
         .catch((error) => {
           console.error("Error adding task: ", error);
+          // Hide the loader in case of an error
+          loaderContainer.style.display = "none";
         });
     }
   }
@@ -65,6 +76,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         description: newDescription,
       };
 
+      // Show the loader
+      loaderContainer.style.display = "flex";
+
       updateTaskInCollection(COLLECTION_NAME, task.key, updatedTask)
         .then(() => {
           task.title = newTitle;
@@ -72,9 +86,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 
           renderTasks();
           closeEditModal();
+
+          // Hide the loader
+          loaderContainer.style.display = "none";
         })
         .catch((error) => {
           console.error("Error updating task: ", error);
+          // Hide the loader in case of an error
+          loaderContainer.style.display = "none";
         });
     }
   }
@@ -83,6 +102,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   async function deleteTaskItem(key) {
     await deleteTask(COLLECTION_NAME, key);
     tasks = tasks.filter((task) => task.key !== key);
+
     renderTasks();
   }
 
@@ -138,8 +158,8 @@ document.addEventListener("DOMContentLoaded", async () => {
           }" data-index="${index}">
             <i class="fas fa-star"></i>
           </span>
-          <button class="edit-button" data-index="${index}">Edit</button>
-          <button class="delete-button" data-key="${task.key}">Delete</button>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-index="${index}" data-bs-target="#exampleModal">Edit</button>
+          <button class="btn btn-danger" data-key="${task.key}">Delete</button>
         </div>
       `;
       todoList.appendChild(li);
@@ -151,17 +171,21 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
 
       // Add event listener to edit button
-      const editButton = li.querySelector(".edit-button");
-      editButton.addEventListener("click", () => {
-        openEditModal(index);
-      });
+      const editButton = li.querySelector(".btn.btn-primary");
+      if (editButton) {
+        editButton.addEventListener("click", () => {
+          openEditModal(index);
+        });
+      }
 
       // Add event listener to delete button
-      const deleteButton = li.querySelector(".delete-button");
-      deleteButton.addEventListener("click", () => {
-        const key = deleteButton.dataset.key;
-        deleteTaskItem(key);
-      });
+      const deleteButton = li.querySelector(".btn.btn-danger");
+      if (deleteButton) {
+        deleteButton.addEventListener("click", () => {
+          const key = deleteButton.dataset.key;
+          deleteTaskItem(key);
+        });
+      }
 
       // Add event listener to task title
       const taskTitle = li.querySelector(".task-title");
@@ -270,20 +294,41 @@ document.addEventListener("DOMContentLoaded", async () => {
     const task = tasks[index];
     openTaskModal(task.title, task.description);
   }
-  // Event listener for the add button
+
+  // Function to handle keydown event on input fields
+  function handleInputKeydown(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+
+      if (event.target === titleInput || event.target === descriptionInput) {
+        addTask();
+      } else if (
+        event.target === editTitleInput ||
+        event.target === editDescriptionInput
+      ) {
+        saveEditedTask();
+      }
+    }
+  }
+
+  // Event listener for the add button click
   addButton.addEventListener("click", addTask);
 
-  // Event listener for the close button in the edit modal
+  // Event listener for the close button in the edit modal click
   document.querySelector(".close").addEventListener("click", closeEditModal);
 
-  // Event listener for the save button in the edit modal
+  // Event listener for the save button in the edit modal click
   saveButton.addEventListener("click", saveEditedTask);
+
+  // Event listener for keydown event on input fields
+  titleInput.addEventListener("keydown", handleInputKeydown);
+  descriptionInput.addEventListener("keydown", handleInputKeydown);
+  editTitleInput.addEventListener("keydown", handleInputKeydown);
+  editDescriptionInput.addEventListener("keydown", handleInputKeydown);
 
   // Render the tasks on page load
   renderTasks();
 });
-
-// Rest of your code...
 
 // Get the theme toggle element
 const themeToggle = document.querySelector(".theme-toggle");
@@ -312,12 +357,4 @@ const savedTheme = localStorage.getItem("theme");
 // Apply the dark theme if the user's preference is set to dark mode or if the saved theme preference is dark
 if (prefersDarkMode || savedTheme === "dark") {
   toggleTheme();
-}
-
-// Update the truncateLongWord function to truncate the word with an ellipsis
-function truncateLongWord(word, maxLength = 10) {
-  if (word.length > maxLength) {
-    return `${word.slice(0, maxLength)}...`;
-  }
-  return word;
 }
