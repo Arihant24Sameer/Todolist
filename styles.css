@@ -480,3 +480,13 @@ body.dark-theme {
     width: 18rem;
     margin-bottom: 1rem;
 }
+
+.icon-container {
+    display: flex;
+    gap: 8px;
+    /* Adjust the spacing between icons as desired */
+}
+
+.icon-container i {
+    cursor: pointer;
+}

@@ -97,7 +97,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     }
   }
-
   // Function to delete a task
   async function deleteTaskItem(key) {
     await deleteTask(COLLECTION_NAME, key);
@@ -143,61 +142,58 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   // Function to render the tasks in the todo list
+
   function renderTasks() {
-    // Clear the todoList
-    todoList.innerHTML = "";
+    const todoList = document.getElementById("todo-list");
+    todoList.innerHTML = ""; // Clear the todoList
 
     tasks.forEach((task, index) => {
-      const li = document.createElement("li");
-      li.innerHTML = `
-        <h3 class="task-title">${truncateLongWord(task.title)}</h3>
-        <p class="task-description">${truncateLongWord(task.description)}</p>
-        <div>
-          <span class="star-icon ${
-            task.starred ? "checked" : ""
-          }" data-index="${index}">
-            <i class="fas fa-star"></i>
-          </span>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-index="${index}" data-bs-target="#exampleModal">Edit</button>
-          <button class="btn btn-danger" data-key="${task.key}">Delete</button>
-        </div>
-      `;
-      todoList.appendChild(li);
+      const cardContainer = document.createElement("div");
+      cardContainer.className = "col";
 
-      // Add event listener to star icon
-      const starIcon = li.querySelector(".star-icon");
+      const card = document.createElement("div");
+      card.className = "card";
+
+      const cardBody = document.createElement("div");
+      cardBody.className = "card-body";
+
+      const title = document.createElement("h5");
+      title.className = "card-title";
+      title.textContent = task.title;
+
+      const description = document.createElement("p");
+      description.className = "card-text";
+      description.textContent = task.description;
+
+      // Attach click event listener to the card itself
+      card.addEventListener("click", () => {
+        openEditModal(index);
+      });
+
+      const iconContainer = document.createElement("div");
+      iconContainer.className = "icon-container";
+
+      const deleteIcon = document.createElement("i");
+      deleteIcon.className = "fas fa-trash";
+      deleteIcon.addEventListener("click", () => {
+        deleteTaskItem(task.key);
+      });
+
+      const starIcon = document.createElement("i");
+      starIcon.className = `fas fa-star ${task.starred ? "checked" : ""}`;
       starIcon.addEventListener("click", () => {
         toggleStar(index);
       });
 
-      // Add event listener to edit button
-      const editButton = li.querySelector(".btn.btn-primary");
-      if (editButton) {
-        editButton.addEventListener("click", () => {
-          openEditModal(index);
-        });
-      }
+      iconContainer.appendChild(deleteIcon);
+      iconContainer.appendChild(starIcon);
 
-      // Add event listener to delete button
-      const deleteButton = li.querySelector(".btn.btn-danger");
-      if (deleteButton) {
-        deleteButton.addEventListener("click", () => {
-          const key = deleteButton.dataset.key;
-          deleteTaskItem(key);
-        });
-      }
-
-      // Add event listener to task title
-      const taskTitle = li.querySelector(".task-title");
-      taskTitle.addEventListener("click", () => {
-        openTaskDetailModal(index);
-      });
-
-      // Add event listener to task description
-      const taskDescription = li.querySelector(".task-description");
-      taskDescription.addEventListener("click", () => {
-        openTaskDetailModal(index);
-      });
+      cardBody.appendChild(title);
+      cardBody.appendChild(description);
+      cardBody.appendChild(iconContainer);
+      card.appendChild(cardBody);
+      cardContainer.appendChild(card);
+      todoList.appendChild(cardContainer);
     });
   }
 
@@ -260,8 +256,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     editTitleInput.value = task.title;
     editDescriptionInput.value = task.description;
 
-    // Save the index of the task being edited
-    saveButton.dataset.index = index;
+    // Save the key of the task being edited
+    saveButton.dataset.index = task.key;
 
     // Show the edit modal
     editModal.style.display = "block";
