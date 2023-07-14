@@ -108,6 +108,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   // Function to toggle the star status of a task
+  // Function to toggle the star status of a task
   function toggleStar(index) {
     const task = tasks[index];
     const newStarStatus = !task.starred;
@@ -143,9 +144,16 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
   }
 
-  // Function to render the tasks in the todo list
-
-  // Function to render the tasks in the todo list
+  // Function to handle card click event
+  function handleCardClick(index, target) {
+    if (target.classList.contains("fa-star")) {
+      // Clicked on the star icon, toggle the star status
+      toggleStar(index);
+    } else {
+      // Clicked on the card body, open the editing modal
+      openEditModal(index);
+    }
+  }
   // Function to render the tasks in the todo list
   function renderTasks() {
     const importantTasksContainer = document.getElementById("important-tasks");
@@ -173,11 +181,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       const title = document.createElement("h5");
       title.className = "card-title";
-      title.textContent = task.title;
+      title.textContent = truncateLongText(task.title, 20); // Truncate the title
 
       const description = document.createElement("p");
       description.className = "card-text";
-      description.textContent = task.description;
+      description.textContent = truncateLongText(task.description, 50); // Truncate the description
 
       const iconContainer = document.createElement("div");
       iconContainer.className = "icon-container";
@@ -197,7 +205,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       const starIcon = document.createElement("i");
       starIcon.className = `fas fa-star ${task.starred ? "checked" : ""}`;
-      starIcon.addEventListener("click", () => {
+      starIcon.addEventListener("click", (event) => {
+        event.stopPropagation();
         toggleStar(index);
       });
 
@@ -227,6 +236,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
 
+  // Function to truncate long text and add "..." at the end
+  function truncateLongText(text, maxLength) {
+    if (text.length > maxLength) {
+      return `${text.slice(0, maxLength)}...`;
+    }
+    return text;
+  }
+
   // Function to open the card for editing
   function openCardForEditing(index) {
     const card = document.getElementById(`card-${index}`);
@@ -237,18 +254,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   function closeCardAfterEditing(index) {
     const card = document.getElementById(`card-${index}`);
     card.classList.remove("editing");
-  }
-
-  // Function to handle card click event
-  function handleCardClick(index) {
-    const card = document.getElementById(`card-${index}`);
-    if (card.classList.contains("editing")) {
-      // Card is already in editing mode, close it
-      closeCardAfterEditing(index);
-    } else {
-      // Open the card for editing
-      openCardForEditing(index);
-    }
   }
 
   document
@@ -265,8 +270,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("exampleModal").style.display = "block";
   }
 
-  // Rest of the code...
-
+  // Function to truncate long text and add "..." at the end
+  function truncateLongText(text, maxLength) {
+    if (text.length > maxLength) {
+      return `${text.slice(0, maxLength)}...`;
+    }
+    return text;
+  }
   // Event listener for the add button click
   addButton.addEventListener("click", addTask);
 

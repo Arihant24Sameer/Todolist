@@ -3,6 +3,8 @@
 
 <head>
     <title>Daily Goals</title>
+    <meta charset="utf-8" name="viewport"
+        content="width=device-width, initial-scale=1.0 ,maximum-scale=1.0, user-scalable=no" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Agdasima:wght@700&display=swap" rel="stylesheet">
@@ -19,29 +21,45 @@
 </head>
 
 <body>
+    <div class="main-container">
 
-    <div class="loader-container">
-        <div class="loader"></div>
-    </div>
-    <div class="container-sm">
-        <div class="theme-toggle">
-            <span id="theme-icon" class="fas fa-sun"></span>
+        <div class="loader-container">
+            <div class="loader"></div>
         </div>
-        <h1>Daily Goals</h1>
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control dark-theme-input" id="titleInput">
-            <label for="Title">Title</label>
-        </div>
+        <div class="text-center">
+            <div class="container-sm">
+                <div class="theme-toggle">
+                    <span id="theme-icon" class="fas fa-sun"></span>
+                </div>
+                <h1>Daily Goals</h1>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control dark-theme-input" id="titleInput">
+                    <label for="Title">Title</label>
+                </div>
 
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control dark-theme-input" id="descriptionInput">
-            <label for="Description">Description</label>
-        </div>
-        <button id="add-button" type="button" class="btn btn-success">Add</button>
-        <!-- Add margin between input fields and cards -->
-        <div class="mt-4">
-            <div class="todo">
-                <div class="row row-cols-1 row-cols-md-2 g-4" id="todo-list"></div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control dark-theme-input" id="descriptionInput">
+                    <label for="Description">Description</label>
+                </div>
+                <button id="add-button" type="button" class="btn btn-success">Add</button>
+                <!-- Add margin between input fields and cards -->
+                <div class="mt-4">
+                    <div class="todo row row-cols-1 row-cols-md-2 g-4" id="todo-list"></div>
+                </div>
+                <!-- Full Task Information Modal -->
+                <div class="important-tasks row">
+                    <div class="col">
+                        <h4>Important Tasks</h4>
+                        <div class="row g-4" id="important-tasks"></div>
+                    </div>
+                </div>
+
+                <div class="regular-tasks row">
+                    <div class="col">
+                        <h2>Regular Tasks</h2>
+                        <div class="row g-4" id="regular-tasks"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -75,16 +93,7 @@
             </div>
         </div>
     </div>
-    <!-- Full Task Information Modal -->
-    <div class="important-tasks">
-        <h4>Important Tasks</h4>
-        <div class="d-inline-flex p-2" id="important-tasks"></div>
-    </div>
 
-    <div class="regular-tasks">
-        <h2>Regular Tasks</h2>
-        <div class="d-inline-flex p-2" id="regular-tasks"></div>
-    </div>
 
 </body>
 
