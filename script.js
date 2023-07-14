@@ -197,7 +197,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
 
       const editIcon = document.createElement("i");
-      editIcon.className = "fas fa-edit";
       editIcon.addEventListener("click", (event) => {
         event.stopPropagation();
         openEditModal(index);
