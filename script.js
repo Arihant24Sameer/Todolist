@@ -18,9 +18,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   const descriptionInput = document.getElementById("descriptionInput");
   const addButton = document.getElementById("add-button");
   const todoList = document.getElementById("todo-list");
-  const taskModal = document.getElementById("taskModal"); // Get modal elements
+  const taskModal = document.getElementById("exampleModal"); // Get modal elements
   const editModal = document.getElementById("editModal");
-  const closeTaskModalButton = document.querySelector("#taskModal .close");
+  const closeTaskModalButton = document.querySelector(
+    "#exampleModal .btn-close"
+  );
   const editTitleInput = document.getElementById("edit-title-input");
   const editDescriptionInput = document.getElementById(
     "edit-description-input"
@@ -85,8 +87,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           task.description = newDescription;
 
           renderTasks();
-          document.getElementById("exampleModal").classList.remove("show");
-          document.getElementById("exampleModal").style.display = "none";
+          closeEditModal();
 
           // Hide the loader
           loaderContainer.style.display = "none";
@@ -98,7 +99,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     }
   }
-
   // Function to delete a task
   async function deleteTaskItem(key) {
     await deleteTask(COLLECTION_NAME, key);
@@ -144,6 +144,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   // Function to render the tasks in the todo list
+
+  // Function to render the tasks in the todo list
+  // Function to render the tasks in the todo list
   function renderTasks() {
     const importantTasksContainer = document.getElementById("important-tasks");
     const regularTasksContainer = document.getElementById("regular-tasks");
@@ -163,6 +166,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       const cardBody = document.createElement("div");
       cardBody.className = "card-body";
+
+      cardContainer.addEventListener("click", () => {
+        handleCardClick(index);
+      });
 
       const title = document.createElement("h5");
       title.className = "card-title";
@@ -219,6 +226,34 @@ document.addEventListener("DOMContentLoaded", async () => {
       importantTasksContainer.style.display = "none";
     }
   }
+
+  // Function to open the card for editing
+  function openCardForEditing(index) {
+    const card = document.getElementById(`card-${index}`);
+    card.classList.add("editing");
+  }
+
+  // Function to close the card after editing
+  function closeCardAfterEditing(index) {
+    const card = document.getElementById(`card-${index}`);
+    card.classList.remove("editing");
+  }
+
+  // Function to handle card click event
+  function handleCardClick(index) {
+    const card = document.getElementById(`card-${index}`);
+    if (card.classList.contains("editing")) {
+      // Card is already in editing mode, close it
+      closeCardAfterEditing(index);
+    } else {
+      // Open the card for editing
+      openCardForEditing(index);
+    }
+  }
+
+  document
+    .querySelector("#exampleModal .modal-footer .btn-secondary")
+    .addEventListener("click", closeEditModal);
 
   // Function to open the edit modal
   function openEditModal(index) {
@@ -308,8 +343,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     editDescriptionInput.value = "";
 
     // Hide the edit modal
-    editModal.style.display = "none";
+    document.getElementById("exampleModal").classList.remove("show");
+    document.getElementById("exampleModal").style.display = "none";
   }
+  function handleCardClick(index) {
+    openEditModal(index);
+  }
+
+  // Event listener for the close button in the edit modal click
+  document
+    .querySelector("#exampleModal .btn-close")
+    .addEventListener("click", closeEditModal);
 
   // Function to open the task modal
   function openTaskModal(title, description) {
@@ -349,7 +393,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   addButton.addEventListener("click", addTask);
 
   // Event listener for the close button in the edit modal click
-  document.querySelector(".close").addEventListener("click", closeEditModal);
+  document
+    .querySelector("#exampleModal .btn-close")
+    .addEventListener("click", closeEditModal);
 
   // Event listener for the save button in the edit modal click
   saveButton.addEventListener("click", saveEditedTask);
