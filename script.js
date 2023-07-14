@@ -85,7 +85,8 @@ document.addEventListener("DOMContentLoaded", async () => {
           task.description = newDescription;
 
           renderTasks();
-          closeEditModal();
+          document.getElementById("exampleModal").classList.remove("show");
+          document.getElementById("exampleModal").style.display = "none";
 
           // Hide the loader
           loaderContainer.style.display = "none";
@@ -97,6 +98,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     }
   }
+
   // Function to delete a task
   async function deleteTaskItem(key) {
     await deleteTask(COLLECTION_NAME, key);
@@ -142,10 +144,15 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   // Function to render the tasks in the todo list
-
   function renderTasks() {
-    const todoList = document.getElementById("todo-list");
-    todoList.innerHTML = ""; // Clear the todoList
+    const importantTasksContainer = document.getElementById("important-tasks");
+    const regularTasksContainer = document.getElementById("regular-tasks");
+
+    // Clear the containers
+    importantTasksContainer.innerHTML = "";
+    regularTasksContainer.innerHTML = "";
+
+    let hasImportantTasks = false; // Track if there are any important tasks
 
     tasks.forEach((task, index) => {
       const cardContainer = document.createElement("div");
@@ -165,11 +172,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       description.className = "card-text";
       description.textContent = task.description;
 
-      // Attach click event listener to the card itself
-      card.addEventListener("click", () => {
-        openEditModal(index);
-      });
-
       const iconContainer = document.createElement("div");
       iconContainer.className = "icon-container";
 
@@ -179,23 +181,62 @@ document.addEventListener("DOMContentLoaded", async () => {
         deleteTaskItem(task.key);
       });
 
+      const editIcon = document.createElement("i");
+      editIcon.className = "fas fa-edit";
+      editIcon.addEventListener("click", (event) => {
+        event.stopPropagation();
+        openEditModal(index);
+      });
+
       const starIcon = document.createElement("i");
       starIcon.className = `fas fa-star ${task.starred ? "checked" : ""}`;
       starIcon.addEventListener("click", () => {
         toggleStar(index);
       });
 
-      iconContainer.appendChild(deleteIcon);
-      iconContainer.appendChild(starIcon);
-
       cardBody.appendChild(title);
       cardBody.appendChild(description);
       cardBody.appendChild(iconContainer);
       card.appendChild(cardBody);
+      iconContainer.appendChild(deleteIcon);
+      iconContainer.appendChild(editIcon);
+      iconContainer.appendChild(starIcon);
       cardContainer.appendChild(card);
-      todoList.appendChild(cardContainer);
+
+      // Determine the container based on the starred status of the task
+      if (task.starred) {
+        hasImportantTasks = true;
+        importantTasksContainer.appendChild(cardContainer);
+      } else {
+        regularTasksContainer.appendChild(cardContainer);
+      }
     });
+
+    // Show or hide the "Important Tasks" section based on the presence of important tasks
+    if (hasImportantTasks) {
+      importantTasksContainer.style.display = "block";
+    } else {
+      importantTasksContainer.style.display = "none";
+    }
   }
+
+  // Function to open the edit modal
+  function openEditModal(index) {
+    const task = tasks[index];
+    editTitleInput.value = task.title;
+    editDescriptionInput.value = task.description;
+    saveButton.dataset.index = index;
+    document.getElementById("exampleModal").classList.add("show");
+    document.getElementById("exampleModal").style.display = "block";
+  }
+
+  // Rest of the code...
+
+  // Event listener for the add button click
+  addButton.addEventListener("click", addTask);
+
+  // Render the tasks on page load
+  renderTasks();
 
   function truncateLongWord(word, maxLength = 10) {
     if (word.length > maxLength) {
@@ -255,12 +296,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     const task = tasks[index];
     editTitleInput.value = task.title;
     editDescriptionInput.value = task.description;
-
-    // Save the key of the task being edited
-    saveButton.dataset.index = task.key;
-
-    // Show the edit modal
-    editModal.style.display = "block";
+    saveButton.dataset.index = index;
+    document.getElementById("exampleModal").classList.add("show");
+    document.getElementById("exampleModal").style.display = "block";
   }
 
   // Function to close the edit modal

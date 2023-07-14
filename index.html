@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title style="">Daily Goals</title>
+    <title>Daily Goals</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Agdasima:wght@700&display=swap" rel="stylesheet">
@@ -19,6 +19,7 @@
 </head>
 
 <body>
+
     <div class="loader-container">
         <div class="loader"></div>
     </div>
@@ -32,15 +33,17 @@
             <label for="Title">Title</label>
         </div>
 
-        <div class="form-floating">
+        <div class="form-floating mb-3">
             <input type="text" class="form-control dark-theme-input" id="descriptionInput">
             <label for="Description">Description</label>
         </div>
         <button id="add-button" type="button" class="btn btn-success">Add</button>
-        <div class="todo">
-            <div class="row row-cols-1 row-cols-md-2 g-4" id="todo-list"></div>
+        <!-- Add margin between input fields and cards -->
+        <div class="mt-4">
+            <div class="todo">
+                <div class="row row-cols-1 row-cols-md-2 g-4" id="todo-list"></div>
+            </div>
         </div>
-
     </div>
 
     <!-- Modal -->
@@ -73,41 +76,14 @@
         </div>
     </div>
     <!-- Full Task Information Modal -->
-    <div id="taskModal" class="modal">
-        <div class="modal-content">
-
-            <span class="close">&times;</span>
-            <h3 id="task-modal-title"></h3>
-            <hr>
-            <p id="task-modal-description"></p>
-
-            <!-- Additional task details can be added here -->
-        </div>
+    <div class="important-tasks">
+        <h4>Important Tasks</h4>
+        <div class="row row-cols-1 row-cols-md-2 g-4" id="important-tasks"></div>
     </div>
-    <div class="toast-container">
-        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
-                <img src="..." class="rounded me-2" alt="...">
-                <strong class="me-auto">Bootstrap</strong>
-                <small class="text-muted">just now</small>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-            <div class="toast-body">
-                See? Just like this.
-            </div>
-        </div>
 
-        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
-                <img src="..." class="rounded me-2" alt="...">
-                <strong class="me-auto">Bootstrap</strong>
-                <small class="text-muted">2 seconds ago</small>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-            <div class="toast-body">
-                Heads up, toasts will stack automatically
-            </div>
-        </div>
+    <div class="regular-tasks">
+        <h2>Regular Tasks</h2>
+        <div class="row row-cols-1 row-cols-md-2 g-4" id="regular-tasks"></div>
     </div>
 
 </body>

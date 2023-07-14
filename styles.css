@@ -490,3 +490,140 @@ body.dark-theme {
 .icon-container i {
     cursor: pointer;
 }
+
+/*CARD*/
+
+/* Styles for dark theme */
+.dark-theme .card {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Styles for light theme */
+.light-theme .card {
+    background-color: #fff;
+    color: #000;
+}
+
+/*FOR input DArk theme */
+/* Styles for dark theme */
+/* Styles for dark theme */
+.dark-theme {
+    background-color: #333;
+    color: #fff;
+}
+
+.dark-theme .form-control {
+    background-color: #555;
+    color: #fff;
+}
+
+.dark-theme .form-control:focus {
+    background-color: #555;
+    color: #fff;
+    box-shadow: none;
+}
+
+.dark-theme .form-label {
+    color: #fff;
+}
+
+/* Styles for light theme */
+.light-theme {
+    background-color: #fff;
+    color: #000;
+}
+
+.light-theme .form-control {
+    background-color: #f8f9fa;
+    color: #000;
+}
+
+.light-theme .form-control:focus {
+    background-color: #f8f9fa;
+    color: #000;
+    box-shadow: none;
+}
+
+.light-theme .form-label {
+    color: #000;
+}
+
+/* Add the following CSS styles to your existing styles.css file */
+
+/* Task Sections */
+.important-tasks,
+.regular-tasks {
+    margin-bottom: 20px;
+}
+
+.important-tasks h2,
+.regular-tasks h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Task Cards */
+.card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.icon-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.icon-container i {
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.checked {
+    color: orange;
+}
+
+/* Task Sections */
+.important-tasks,
+.regular-tasks {
+    margin-bottom: 20px;
+    text-align: center;
+    /* Add this line to center-align the sections */
+}
+
+.important-tasks h4,
+.regular-tasks h4 {
+    font-size: 1.0rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+    /* Add this line to center-align the headings */
+}
+
+/* Task Cards */
+.card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    display: inline-block;
+    margin: 10px auto;
+    /* Add this line to center-align the cards */
+    text-align: left;
+    /* Adjust text alignment as needed */
+    width: 300px;
+    /* Adjust card width as needed */
+}
