@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const loaderContainer = document.querySelector(".loader-container");
   const saveButton = document.getElementById("save-button");
   loaderContainer.style.display = "none";
+  const importantTasksContainer = document.getElementById("important-tasks");
 
   // Function to add a new task
   function addTask() {
@@ -101,13 +102,26 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
   // Function to delete a task
   async function deleteTaskItem(key) {
-    await deleteTask(COLLECTION_NAME, key);
-    tasks = tasks.filter((task) => task.key !== key);
+    try {
+      const loaderContainer = document.querySelector(".loader-container");
+      loaderContainer.style.display = "flex";
 
-    renderTasks();
+      await deleteTask(COLLECTION_NAME, key);
+      tasks = tasks.filter((task) => task.key !== key);
+
+      renderTasks();
+
+      // Hide the loader after a short delay (to make sure the task deletion is complete)
+      setTimeout(() => {
+        loaderContainer.style.display = "none";
+      }, 1000);
+    } catch (error) {
+      console.error("Error deleting task: ", error);
+      // Hide the loader in case of an error
+      document.querySelector(".loader-container").style.display = "none";
+    }
   }
 
-  // Function to toggle the star status of a task
   // Function to toggle the star status of a task
   function toggleStar(index) {
     const task = tasks[index];
@@ -116,6 +130,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       ...task,
       position: index,
     }));
+
+    // Show the loader
+    loaderContainer.style.display = "flex";
 
     // Update the task locally
     task.starred = newStarStatus;
@@ -138,9 +155,15 @@ document.addEventListener("DOMContentLoaded", async () => {
       .then(() => {
         console.log("Task updated successfully in the database");
         renderTasks(); // Update the page dynamically
+        // Hide the loader
+        loaderContainer.style.display = "none";
       })
+
       .catch((error) => {
         console.error("Error updating task in the database: ", error);
+
+        // Hide the loader in case of an error
+        loaderContainer.style.display = "none";
       });
   }
 
@@ -174,9 +197,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       const cardBody = document.createElement("div");
       cardBody.className = "card-body";
+      cardBody.id = `card-body-${index}`; // Add an ID to the card body
 
-      cardContainer.addEventListener("click", () => {
-        handleCardClick(index);
+      cardContainer.addEventListener("click", (event) => {
+        handleCardClick(index, event);
       });
 
       const title = document.createElement("h5");
@@ -191,8 +215,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       iconContainer.className = "icon-container";
 
       const deleteIcon = document.createElement("i");
-      deleteIcon.className = "fas fa-trash";
-      deleteIcon.addEventListener("click", () => {
+      deleteIcon.className = "fas fa-trash delete-icon";
+      deleteIcon.addEventListener("click", (event) => {
+        event.stopPropagation(); // Prevent event bubbling
         deleteTaskItem(task.key);
       });
 
@@ -203,7 +228,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
 
       const starIcon = document.createElement("i");
-      starIcon.className = `fas fa-star ${task.starred ? "checked" : ""}`;
+      starIcon.className = `fas fa-star star-icon ${
+        task.starred ? "checked" : ""
+      }`;
       starIcon.addEventListener("click", (event) => {
         event.stopPropagation();
         toggleStar(index);
@@ -232,6 +259,17 @@ document.addEventListener("DOMContentLoaded", async () => {
       importantTasksContainer.style.display = "block";
     } else {
       importantTasksContainer.style.display = "none";
+    }
+  }
+
+  // Function to handle card click event
+  function handleCardClick(index, target) {
+    if (target.classList.contains("fa-star")) {
+      // Clicked on the star icon, toggle the star status
+      toggleStar(index);
+    } else if (!target.classList.contains("editing")) {
+      // Clicked on the card body, open the editing modal (if not currently being edited)
+      openEditModal(index);
     }
   }
 
