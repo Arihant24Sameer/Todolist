@@ -1,0 +1,708 @@
+.container {
+    position: relative;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    height: 100vh;
+}
+
+h1 {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 80px;
+    margin-left: 70px;
+    margin-top: 20px;
+}
+
+.des {
+    margin-right: 50%;
+}
+
+
+
+input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    margin-right: 10px;
+    border: 2px solid #ccc;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.delete-button {
+    background-color: #FF0000;
+    color: white;
+    font-weight: bold;
+}
+
+.delete-button:hover {
+    background-color: #FF3333;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: left;
+}
+
+li {
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Modal Styles */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    order: 1;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#save-button {
+    margin-top: 10px;
+}
+
+/* Light Theme */
+body.light-theme {
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+/* Dark Theme */
+body.dark-theme {
+    background-color: #333;
+    color: #f8f8f8;
+}
+
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 30px;
+    margin-bottom: 20px;
+    transition: color 0.3s ease-in-out;
+}
+
+.modal-content .small-title {
+    font-size: 30px;
+}
+
+.modal-content textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    resize: vertical;
+}
+
+#edit-description-input {
+    margin-top: 0px;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    margin-right: 100px;
+    border: 1px solid;
+    width: 80%;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.star-icon.checked {
+    color: #FFD700;
+}
+
+/* Modal styles */
+.modal-content {
+    margin: 45% auto;
+    padding: 20px;
+    width: 50%;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#save-button {
+    margin-top: 5px;
+}
+
+.theme-toggle {
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+.theme-toggle #theme-icon {
+    font-size: 30px;
+    cursor: pointer;
+    color: #aaa;
+}
+
+.theme-toggle {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 9999;
+}
+
+body {
+    font-family: 'Helvetica', sans-serif;
+}
+
+.theme-toggle #theme-icon {
+    font-size: 30px;
+    cursor: pointer;
+    color: #aaa;
+}
+
+/* Dark theme */
+.dark-theme {
+    background-color: #222;
+    color: #fff;
+}
+
+.task-modal-description {
+    max-height: 100px;
+    /* Adjust the max-height value as needed */
+    overflow-y: auto;
+}
+
+.dark-theme #title,
+.dark-theme input[type="text"] {
+    color: #fff;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+
+    .modal-content {
+        width: 100%;
+        margin: 30% auto;
+    }
+}
+
+.task-modal-description p {
+    margin: 10px;
+}
+
+.form-control.textarea {
+    resize: none;
+    /* Prevent textarea from being resized */
+}
+
+/* Dark Theme */
+body.dark-theme {
+    background-color: #333;
+    color: #f8f8f8;
+}
+
+.dark-theme .modal-content {
+    background-color: #444;
+    color: #f8f8f8;
+    border-color: #666;
+}
+
+.dark-theme .close {
+    color: #aaa;
+}
+
+.dark-theme h3 {
+    color: #f8f8f8;
+}
+
+.dark-theme p {
+    color: #f8f8f8;
+}
+
+.dark-theme .task-details .label,
+.dark-theme .task-details .value {
+    color: #f8f8f8;
+}
+
+.dark-theme .task-details .separator {
+    border-color: #666;
+}
+
+.dark-theme .task-details .notes textarea,
+.dark-theme .task-details .notes label {
+    color: #f8f8f8;
+}
+
+.loader-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader-container.show {
+    display: flex;
+}
+
+.dark-theme .dark-theme-input {
+    background-color: #333;
+    color: #fff;
+
+}
+
+.loader {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.dark-theme-input {
+    color: #fff;
+    /* Set the text color to white */
+    /* Remove the background color for dark theme */
+    border-color: #555;
+    /* Set the border color for dark theme */
+}
+
+.dark-theme-input::placeholder {
+    color: #999;
+    /* Set the placeholder color for dark theme */
+}
+
+.todo {
+    padding-right: 180px;
+}
+
+.card {
+    width: 18rem;
+    margin-bottom: 1rem;
+}
+
+.card:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.modal-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.regular-tasks {
+    margin-top: 40px;
+}
+
+.icon-container {
+    display: flex;
+    gap: 8px;
+}
+
+.icon-container i {
+    cursor: pointer;
+}
+
+/*CARD*/
+
+/* Styles for dark theme */
+.dark-theme .card {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Styles for light theme */
+.light-theme .card {
+    background-color: #fff;
+    color: #000;
+    border-radius: 25px;
+
+
+}
+
+/* Styles for dark theme */
+.dark-theme {
+    background-color: white;
+    color: red;
+}
+
+.dark-theme .form-control {
+    background-color: #555;
+    color: #fff;
+}
+
+.dark-theme .form-control:focus {
+    background-color: #555;
+    color: #fff;
+    box-shadow: none;
+}
+
+.dark-theme .form-label {
+    color: #fff;
+}
+
+/* Styles for light theme */
+.light-theme {
+    background-color: #fff;
+    color: #000;
+}
+
+.light-theme .form-control {
+    background-color: #f8f9fa;
+    color: #000;
+}
+
+.light-theme .form-control:focus {
+    background-color: #f8f9fa;
+    color: #000;
+    box-shadow: none;
+}
+
+.light-theme .form-label {
+    color: #000;
+}
+
+/* Task Sections */
+.important-tasks,
+.regular-tasks {
+    margin-bottom: 20px;
+}
+
+.important-tasks h4,
+.regular-tasks h4 {
+    font-size: 1.0rem;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+
+/* Task Sections */
+.important-tasks,
+.regular-tasks {
+    margin-bottom: 10px;
+    text-align: center;
+
+}
+
+/* Task Cards */
+.card {
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    padding: 10px;
+
+}
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.icon-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.icon-container i {
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+/* Task Cards */
+.card {
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    padding: 10px;
+    display: inline-block;
+    margin: 10px auto;
+    /* Add this line to center-align the cards */
+    text-align: left;
+    /* Adjust text alignment as needed */
+    width: 300px;
+    /* Adjust card width as needed */
+    cursor: pointer;
+}
+
+.change-color-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #333;
+    cursor: pointer;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 80px;
+    margin-left: 70px;
+}
+
+.task-card {
+    position: relative;
+}
+
+/* ... (previous CSS code) ... */
+
+.task-card {
+    position: relative;
+    padding: 10px;
+}
+
+/* ... (previous CSS code) ... */
+
+.task-card {
+    position: relative;
+    padding: 10px;
+}
+
+.delete-icon {
+    position: absolute;
+    top: 25px;
+    right: 15px;
+    color: #aaa;
+    transition: color 0.3s ease-in-out;
+}
+
+.delete-icon:hover {
+    color: red;
+}
+
+.star-icon {
+    position: absolute;
+    bottom: 25px;
+    right: 15px;
+    color: #aaa;
+    transition: color 0.3s ease-in-out;
+}
+
+.star-icon:hover {
+    color: yellow;
+}
+
+/* ... (rest of the CSS code) ... */
+
+
+/* ... (rest of the CSS code) ... */
+
+.task-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.task-card {
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 10px;
+    min-width: 200px;
+    flex-grow: 1;
+}
+
+.task-card:hover .delete-icon,
+.task-card:hover .star-icon {
+    color: red;
+}
+
+/* Style the card container */
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+}
+
+.input-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Responsive styles for input fields */
+.form-floating {
+    width: 150%;
+}
+
+@media (max-width: 576px) {
+
+    /* Adjust the styles for small screens (e.g., smartphones) */
+    .input-container {
+        padding: 10px;
+    }
+
+    .form-floating {
+        width: 50%;
+    }
+}
+
+@media (min-width: 577px) and (max-width: 991px) {
+
+    /* Adjust the styles for medium screens (e.g., tablets) */
+    .input-container {
+        padding: 15px;
+    }
+
+    .form-floating {
+        width: 100%;
+    }
+}
+
+/* Add more media queries as needed for larger screens if required */
+
+.section {
+    margin-top: 50px;
+}
+
+/* Remove background color from the label in input title and description */
+.form-floating label {
+    background-color: transparent;
+}
+
+/* Box shadow effect on hover */
+.dark-theme .card:hover {
+    box-shadow: 0 0 5px white;
+    border-radius: 20px;
+}
+
+.dark-theme-input {
+    color: #45a049;
+
+}
+
+.dark-theme .form-floating input[type="text"],
+.dark-theme .form-floating label {
+    color: #f8f8f8;
+}
+
+.input-container {
+    padding-left: 100px;
+}
+
+/* Styles for dark theme */
+.dark-theme {
+    background-color: #333;
+    color: #f8f8f8;
+}
+
+.dark-theme .card {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #fff;
+    /* Add this line to set the border color to white */
+    border-radius: 10px;
+    padding: 10px;
+    display: inline-block;
+    margin: 10px auto;
+    /* Add this line to center-align the cards */
+    text-align: left;
+    /* Adjust text alignment as needed */
+    width: 300px;
+    /* Adjust card width as needed */
+    cursor: pointer;
+}
+
+
+
+
+.dark-theme-input#descriptionInput {
+    height: 80px;
+    width: 160%;
+    margin-top: -15%;
+    padding-right: 20%;
+    resize: none;
+    /* Prevent the textarea from being resized */
+}
+
+.daily {
+    margin-top: 3%;
+}
+.btn.btn-success{
+    width: 10%;
+    margin-top: -3%;
+}
