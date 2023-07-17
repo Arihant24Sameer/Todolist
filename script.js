@@ -253,7 +253,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         regularTasksContainer.appendChild(cardContainer);
       }
     });
-
   }
 
   // Function to handle card click event

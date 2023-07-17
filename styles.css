@@ -5,7 +5,6 @@
     padding: 20px;
     text-align: center;
     height: 100vh;
-
 }
 
 h1 {
@@ -22,7 +21,7 @@ input[type="text"] {
     flex: 1;
     padding: 10px;
     margin-right: 10px;
-    border: 20px solid #ccc;
+    border: 2px solid #ccc;
 }
 
 button {
@@ -37,8 +36,6 @@ button:hover {
     background-color: #45a049;
 }
 
-/* Add this CSS code */
-
 .delete-button {
     background-color: #FF0000;
     color: white;
@@ -48,7 +45,6 @@ button:hover {
 .delete-button:hover {
     background-color: #FF3333;
 }
-
 
 ul {
     list-style-type: none;
@@ -66,7 +62,6 @@ li {
 }
 
 /* Modal styles */
-
 .modal {
     display: none;
     position: fixed;
@@ -80,8 +75,6 @@ li {
 }
 
 /* Modal Styles */
-
-
 .close {
     color: #aaa;
     float: right;
@@ -142,15 +135,12 @@ h1 {
 
 #edit-description-input {
     margin-top: 0px;
-    /* Adds space above the input */
 }
-
-
 
 input[type="text"] {
     flex: 1;
     padding: 10px;
-    margin-right: 10px;
+    margin-right: 100px;
     border: 1px solid;
     width: 80%;
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
@@ -163,14 +153,6 @@ button {
     border: none;
     cursor: pointer;
 }
-ul {
-    list-style-type: none;
-    padding: 0;
-    text-align: left;
-    width: 89%;
-}
-
-
 
 .star-icon.checked {
     color: #FFD700;
@@ -178,11 +160,10 @@ ul {
 
 /* Modal styles */
 .modal-content {
-    margin: 15% auto;
+    margin: 45% auto;
     padding: 20px;
     width: 50%;
 }
-
 
 .close:hover,
 .close:focus {
@@ -205,7 +186,6 @@ ul {
     cursor: pointer;
     color: #aaa;
 }
-
 
 .theme-toggle {
     position: fixed;
@@ -236,7 +216,6 @@ body {
     overflow-y: auto;
 }
 
-
 .dark-theme #title,
 .dark-theme input[type="text"] {
     color: #fff;
@@ -252,13 +231,6 @@ body {
         width: 100%;
         margin: 30% auto;
     }
-}
-
-.task-modal-description {
-    max-height: 100px;
-    /* Adjust the max-height value as needed */
-    overflow-y: auto;
-    /* Enable vertical scrolling */
 }
 
 .task-modal-description p {
@@ -328,8 +300,8 @@ body.dark-theme {
 .dark-theme .dark-theme-input {
     background-color: #333;
     color: #fff;
-}
 
+}
 
 .loader {
     border: 4px solid #f3f3f3;
@@ -353,8 +325,7 @@ body.dark-theme {
 .dark-theme-input {
     color: #fff;
     /* Set the text color to white */
-    background-color: #333;
-    /* Set the background color for dark theme */
+    /* Remove the background color for dark theme */
     border-color: #555;
     /* Set the border color for dark theme */
 }
@@ -382,12 +353,10 @@ body.dark-theme {
     border-top-right-radius: 8px;
 }
 
-
 .modal-title {
     font-size: 24px;
     font-weight: bold;
 }
-
 
 .regular-tasks {
     margin-top: 40px;
@@ -414,12 +383,15 @@ body.dark-theme {
 .light-theme .card {
     background-color: #fff;
     color: #000;
+    border-radius: 25px;
+
+
 }
 
 /* Styles for dark theme */
 .dark-theme {
-    background-color: #333;
-    color: #fff;
+    background-color: white;
+    color: red;
 }
 
 .dark-theme .form-control {
@@ -458,7 +430,6 @@ body.dark-theme {
     color: #000;
 }
 
-
 /* Task Sections */
 .important-tasks,
 .regular-tasks {
@@ -485,6 +456,7 @@ body.dark-theme {
     border: 1px solid #ccc;
     border-radius: 25px;
     padding: 10px;
+
 }
 
 .card-title {
@@ -512,7 +484,7 @@ body.dark-theme {
 /* Task Cards */
 .card {
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 25px;
     padding: 10px;
     display: inline-block;
     margin: 10px auto;
@@ -522,7 +494,6 @@ body.dark-theme {
     width: 300px;
     /* Adjust card width as needed */
     cursor: pointer;
-
 }
 
 .change-color-icon {
@@ -539,10 +510,6 @@ body.dark-theme {
     align-items: center;
     padding-left: 80px;
     margin-left: 70px;
-}
-
-.input-container .form-floating {
-    width: 50%;
 }
 
 .task-card {
@@ -585,7 +552,7 @@ body.dark-theme {
 
 .task-card {
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 20px;
     padding: 10px;
     min-width: 200px;
     flex-grow: 1;
@@ -604,48 +571,6 @@ body.dark-theme {
     gap: 20px;
 }
 
-/* For screens between 769px and 992px (e.g., larger tablets and small laptops) */
-@media (min-width: 769px) and (max-width: 992px) {
-    .container-sm {
-        padding: 20px;
-    }
-
-    .modal-dialog {
-        width: 70%;
-    }
-
-    .modal-body {
-        padding: 20px;
-    }
-
-    .important-tasks h4,
-    .regular-tasks h4 {
-        font-size: 24px;
-    }
-}
-
-/* For screens larger than 992px (e.g., laptops and desktops) */
-@media (min-width: 993px) {
-
-    /* Keep the default styles from the base styles */
-    .container-sm {
-        padding: 20px;
-    }
-
-    .modal-dialog {
-        width: 600px;
-    }
-
-    .modal-body {
-        padding: 20px;
-    }
-
-    .important-tasks h4,
-    .regular-tasks h4 {
-        font-size: 24px;
-    }
-}
-
 .input-container {
     max-width: 500px;
     margin: 0 auto;
@@ -654,7 +579,7 @@ body.dark-theme {
 
 /* Responsive styles for input fields */
 .form-floating {
-    width: 100%;
+    width: 150%;
 }
 
 @media (max-width: 576px) {
@@ -665,7 +590,7 @@ body.dark-theme {
     }
 
     .form-floating {
-        width: 100%;
+        width: 50%;
     }
 }
 
@@ -681,21 +606,58 @@ body.dark-theme {
     }
 }
 
-@media (min-width: 992px) and (max-width: 1200px) {
-
-    /* Adjust the styles for large screens (e.g., laptops) */
-    .input-container {
-        padding: 20px;
-    }
-
-    .form-floating {
-        width: 100%;
-    }
-}
-
-
 /* Add more media queries as needed for larger screens if required */
 
 .section {
     margin-top: 50px;
 }
+
+/* Remove background color from the label in input title and description */
+.form-floating label {
+    background-color: transparent;
+}
+
+/* Box shadow effect on hover */
+.dark-theme .card:hover {
+    box-shadow: 0 0 10px white;
+    border-radius: 20px;
+}
+
+.dark-theme-input {
+    color: #45a049;
+
+}
+
+.dark-theme .form-floating input[type="text"],
+.dark-theme .form-floating label {
+    color: #f8f8f8;
+}
+
+.input-container {
+    padding-left: 100px;
+}
+
+/* Styles for dark theme */
+.dark-theme {
+    background-color: #333;
+    color: #f8f8f8;
+}
+
+.dark-theme .card {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #fff; /* Add this line to set the border color to white */
+    border-radius: 25px;
+    padding: 10px;
+    display: inline-block;
+    margin: 10px auto;
+    /* Add this line to center-align the cards */
+    text-align: left;
+    /* Adjust text alignment as needed */
+    width: 300px;
+    /* Adjust card width as needed */
+    cursor: pointer;
+}
+
+
+
