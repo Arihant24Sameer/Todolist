@@ -14,8 +14,18 @@ h1 {
 
 .input-container {
     display: flex;
-    margin-bottom: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 80px;
+    margin-left: 70px;
+    margin-top: 20px;
 }
+
+.des {
+    margin-right: 50%;
+}
+
+
 
 input[type="text"] {
     flex: 1;
@@ -516,8 +526,24 @@ body.dark-theme {
     position: relative;
 }
 
+/* ... (previous CSS code) ... */
+
+.task-card {
+    position: relative;
+    padding: 10px;
+}
+
+/* ... (previous CSS code) ... */
+
+.task-card {
+    position: relative;
+    padding: 10px;
+}
+
 .delete-icon {
     position: absolute;
+    top: 25px;
+    right: 15px;
     color: #aaa;
     transition: color 0.3s ease-in-out;
 }
@@ -526,21 +552,22 @@ body.dark-theme {
     color: red;
 }
 
-.task-card {
-    position: relative;
-}
-
 .star-icon {
     position: absolute;
+    bottom: 25px;
+    right: 15px;
     color: #aaa;
     transition: color 0.3s ease-in-out;
-    margin-left: 100px;
-    right: 10px;
 }
 
 .star-icon:hover {
     color: yellow;
 }
+
+/* ... (rest of the CSS code) ... */
+
+
+/* ... (rest of the CSS code) ... */
 
 .task-card-container {
     display: flex;
@@ -619,7 +646,7 @@ body.dark-theme {
 
 /* Box shadow effect on hover */
 .dark-theme .card:hover {
-    box-shadow: 0 0 10px white;
+    box-shadow: 0 0 5px white;
     border-radius: 20px;
 }
 
@@ -646,8 +673,9 @@ body.dark-theme {
 .dark-theme .card {
     background-color: #333;
     color: #fff;
-    border: 1px solid #fff; /* Add this line to set the border color to white */
-    border-radius: 25px;
+    border: 1px solid #fff;
+    /* Add this line to set the border color to white */
+    border-radius: 10px;
     padding: 10px;
     display: inline-block;
     margin: 10px auto;
@@ -661,3 +689,20 @@ body.dark-theme {
 
 
 
+
+.dark-theme-input#descriptionInput {
+    height: 80px;
+    width: 160%;
+    margin-top: -15%;
+    padding-right: 20%;
+    resize: none;
+    /* Prevent the textarea from being resized */
+}
+
+.daily {
+    margin-top: 3%;
+}
+.btn.btn-success{
+    width: 10%;
+    margin-top: -3%;
+}

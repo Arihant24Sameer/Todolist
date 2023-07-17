@@ -205,11 +205,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       const title = document.createElement("h5");
       title.className = "card-title";
-      title.textContent = truncateLongText(task.title, 20); // Truncate the title
+      title.textContent = truncateLongText(task.title, 19); // Truncate the title
 
       const description = document.createElement("p");
       description.className = "card-text";
-      description.textContent = truncateLongText(task.description, 50); // Truncate the description
+      description.textContent = truncateLongText(task.description, 22); // Truncate the description
 
       const iconContainer = document.createElement("div");
       iconContainer.className = "icon-container";
