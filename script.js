@@ -254,12 +254,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     });
 
-    // Show or hide the "Important Tasks" section based on the presence of important tasks
-    if (hasImportantTasks) {
-      importantTasksContainer.style.display = "block";
-    } else {
-      importantTasksContainer.style.display = "none";
-    }
   }
 
   // Function to handle card click event

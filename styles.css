@@ -49,17 +49,6 @@ button:hover {
     background-color: #FF3333;
 }
 
-.add-button {
-    background-color: #FF0000;
-    color: white;
-    font-weight: bold;
-}
-
-.add-button:hover {
-    background-color: #FF3333;
-}
-
-
 
 ul {
     list-style-type: none;
@@ -75,12 +64,6 @@ li {
     justify-content: space-between;
     align-items: center;
 }
-
-.star-icon {
-    color: white;
-    cursor: pointer;
-}
-
 
 /* Modal styles */
 
@@ -107,30 +90,6 @@ li {
     cursor: pointer;
     order: 1;
 }
-
-.edit-button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-    order: 2;
-    /* Change the order to 2 to move the edit task button to the right */
-}
-
-.edit-button:hover {
-    background-color: #45a049;
-}
-
-.star-icon {
-    color: #aaa;
-    cursor: pointer;
-}
-
-.star-icon.checked {
-    color: #FFD700;
-}
-
 
 .close:hover,
 .close:focus {
@@ -192,7 +151,7 @@ input[type="text"] {
     flex: 1;
     padding: 10px;
     margin-right: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid;
     width: 80%;
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
@@ -204,11 +163,6 @@ button {
     border: none;
     cursor: pointer;
 }
-
-button:hover {
-    background-color: #45a049;
-}
-
 ul {
     list-style-type: none;
     padding: 0;
@@ -216,22 +170,7 @@ ul {
     width: 89%;
 }
 
-li {
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: background-color 0.3s ease-in-out;
-}
 
-.star-icon {
-    color: #aaa;
-    cursor: pointer;
-    order: 2;
-    margin-right: 10px;
-}
 
 .star-icon.checked {
     color: #FFD700;
@@ -239,7 +178,6 @@ li {
 
 /* Modal styles */
 .modal-content {
-    background-color: #fefefe;
     margin: 15% auto;
     padding: 20px;
     width: 50%;
@@ -254,7 +192,7 @@ li {
 }
 
 #save-button {
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 .theme-toggle {
@@ -268,13 +206,6 @@ li {
     color: #aaa;
 }
 
-.container {
-    position: relative;
-    max-width: 699px;
-    margin: 0 auto;
-    padding: 20px;
-    text-align: center;
-}
 
 .theme-toggle {
     position: fixed;
@@ -309,30 +240,6 @@ body {
 .dark-theme #title,
 .dark-theme input[type="text"] {
     color: #fff;
-}
-
-
-
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-height: 80vh;
-    overflow-y: auto;
-    /* Enable vertical scrolling */
-    word-break: break-word;
-    /* Break words to fit within the container */
-}
-
-
-.close {
-    float: right;
-    font-size: 30px;
-    font-weight: bold;
-    color: #888;
-    cursor: pointer;
 }
 
 /* Responsive Styles */
@@ -601,11 +508,6 @@ body.dark-theme {
     cursor: pointer;
     margin-right: 5px;
 }
-
-.checked {
-    color: orange;
-}
-
 
 /* Task Cards */
 .card {
