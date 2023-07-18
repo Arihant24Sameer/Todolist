@@ -702,7 +702,8 @@ body.dark-theme {
 .daily {
     margin-top: 3%;
 }
-.btn.btn-success{
-    width: 10%;
+
+.btn.btn-success {
+    width: 20%;
     margin-top: -3%;
 }

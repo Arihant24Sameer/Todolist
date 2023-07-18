@@ -56,8 +56,7 @@ export const addTaskToCollection = async (collectionName, task) => {
 export const updateTaskInCollection = async (
   collectionName,
   key,
-  updatedTask,
-  
+  updatedTask
 ) => {
   const db = getFirestore();
   const docRef = doc(db, collectionName, key);
